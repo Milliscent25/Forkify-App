@@ -1,3 +1,5 @@
+// import icons from '../img/icons.svg';// parcel 1
+// import icons from '../img/icons.svg';
 const recipeContainer = document.querySelector(".recipe");
 const timeout = function(s) {
     return new Promise(function(_, reject) {
@@ -39,7 +41,7 @@ const showRecipe = async function() {
           <div class="recipe__details">
             <div class="recipe__info">
               <svg class="recipe__info-icon">
-                <use href="src/img/icons.svg#icon-clock"></use>
+                <use href=""></use>
               </svg>
               <span class="recipe__info-data recipe__info-data--minutes">${recipe.cookingTime}</span>
               <span class="recipe__info-text">minutes</span>
@@ -80,27 +82,21 @@ const showRecipe = async function() {
           <div class="recipe__ingredients">
             <h2 class="heading--2">Recipe ingredients</h2>
             <ul class="recipe__ingredient-list">
+            ${recipe.ingredients.map((ing)=>{
+            return `
               <li class="recipe__ingredient">
-                <svg class="recipe__icon">
-                  <use href="src/img/icons.svg#icon-check"></use>
-                </svg>
-                <div class="recipe__quantity">1000</div>
-                <div class="recipe__description">
-                  <span class="recipe__unit">g</span>
-                  pasta
-                </div>
-              </li>
-
-              <li class="recipe__ingredient">
-                <svg class="recipe__icon">
-                  <use href="src/img/icons.svg#icon-check"></use>
-                </svg>
-                <div class="recipe__quantity">0.5</div>
-                <div class="recipe__description">
-                  <span class="recipe__unit">cup</span>
-                  ricotta cheese
-                </div>
-              </li>
+              <svg class="recipe__icon">
+                <use href="src/img/icons.svg#icon-check"></use>
+              </svg>
+              <div class="recipe__quantity">${ing.quantity}</div>
+              <div class="recipe__description">
+                <span class="recipe__unit">${ing.unit}</span>
+                ${ing.description}
+              </div>
+            </li>
+              `;
+        })}
+             
             </ul>
           </div>
 
